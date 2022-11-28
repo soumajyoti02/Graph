@@ -41,7 +41,7 @@ For BFS traversal, we need a queue data structure and a visited array.
 
 
 
-Code Below :::
+Code Below :::  (BFS =>)
 
 
 class Solution {
@@ -89,10 +89,68 @@ class Solution {
 
 
 
+===================================================================================
+  
+DFS APPROACH :
 
+Algorithm: 
 
+--> Create the graph using the given number of edges and vertices.
+  
+--> Create a recursive function that have current index or vertex, visited array and parent node.
+  
+--> Mark the current node as visited .
+  
+--> Find all the vertices which are not visited and are adjacent to the current node. 
+  Recursively call the function for those vertices, If the recursive function returns true return true.
+    
+--> If the adjacent node is not parent and already visited then return true.
+--> Create a wrapper function, that calls the recursive function for all the vertices and if any function returns true, 
+    return true. (Because all the nodes in the graph might not be connected or reachable from a starting vertex. 
+    To make sure every vertex of graph is connected we are calling the recursive function for all unvisited nodes.)
+  
+  
+--> Else if for all vertices the function returns false return false.
 
+------------------------------------------------------------------------
 
+Code Below :::  (DFS =>)
+
+class Solution {
+    
+  private:
+  bool detect(int start, int parent, vector<int> adj[], int *vis)
+  {
+      vis[start] = 1;
+      for(auto it : adj[start])
+      {
+          if(!vis[it])
+          {
+              if(detect(it, start, adj, vis) == true)
+                return true;
+          }
+          else if(it != parent)
+            return true;
+      }
+      return false;
+  }
+  
+  
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(int V, vector<int> adj[]) {
+        // Code here
+        int vis[V] = {0};
+        for(int i = 1; i < V; i++)
+        {
+            if(!vis[i])
+            {
+                if(detect(i, -1, adj, vis)) return true;
+            }
+        }
+        return false;
+    }
+};
 
 
   
