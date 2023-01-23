@@ -5,7 +5,7 @@ Question : Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E
 Approach:  
 LINK => 
   https://takeuforward.org/data-structure/detect-cycle-in-a-directed-graph-using-dfs-g-19/
-Consider the following graph:
+Lets Consider the following graph:
 
 
 We will be solving it using DFS traversal. DFS goes in-depth, i.e., traverses all nodes by going ahead, 
